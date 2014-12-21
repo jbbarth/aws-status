@@ -16,7 +16,7 @@ setup(
     license='MIT',
     author='Jean-Baptiste Barth',
     author_email='jeanbaptiste.barth@gmail.com',
-    packages=find_packages(exclude=['tests*'])
+    packages=find_packages(exclude=['tests*']),
     install_requires=[],
     include_package_data=True,
     #see http://pypi.python.org/pypi?%3Aaction=list_classifiers
