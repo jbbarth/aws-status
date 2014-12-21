@@ -1,6 +1,7 @@
 aws-status
 ==========
 
+[![Build Status](https://travis-ci.org/jbbarth/aws-status.svg?branch=master)](https://travis-ci.org/jbbarth/aws-status)
 
 Helps you check AWS status as seen from the official status page http://status.aws.amazon.com/
 
