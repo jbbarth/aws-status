@@ -28,7 +28,7 @@ setup(
     include_package_data=True,
     #see http://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
         'Environment :: Console',
         'Intended Audience :: System Administrators',
         'License :: OSI Approved :: MIT License',
