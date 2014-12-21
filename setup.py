@@ -22,7 +22,9 @@ setup(
     scripts=[
         'bin/aws-status-list',
     ],
-    install_requires=[],
+    install_requires=[
+        'feedparser>=5.1.3',
+    ],
     include_package_data=True,
     #see http://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[

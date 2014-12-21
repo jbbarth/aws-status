@@ -1,0 +1,40 @@
+#!/usr/bin/env python
+
+import argparse
+from aws_status import Feed
+import sys
+
+#main() function that can be used outside the script
+def main():
+    #parse arguments
+    parser = argparse.ArgumentParser(description='List available status feeds')
+    parser.add_argument('feed', action='store', help='A feed URL to parse')
+    args = parser.parse_args()
+
+    last_event = Feed(args.feed).status()
+    title = last_event["title"]
+
+    if title.startswith("Service is operating normally") or title.startswith("OK"):
+        status = 0
+        msg = "OK:"
+    elif title.startswith("Informational message") or title.startswith("Performance issues"):
+        status = 1
+        msg = "WARNING:"
+    elif title.startswith("Service disruption"):
+        status = 2
+        msg = "CRITICAL:"
+    else:
+        status = 3
+        msg = "UNKNOWN:"
+
+    print msg, title
+    if "published" in last_event:
+        print last_event["published"]
+    if "description" in last_event:
+        print last_event["description"]
+
+    sys.exit(status)
+
+#if the script is launched directly...
+if __name__ == "__main__":
+    main()

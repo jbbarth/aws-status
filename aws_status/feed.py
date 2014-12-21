@@ -1,3 +1,4 @@
+import feedparser
 import re
 
 class Feed(object):
@@ -24,3 +25,13 @@ class Feed(object):
         #ex: route53, or management-console
         else:
             self.service = feed_name
+
+    def status(self):
+        try:
+            parsed = feedparser.parse(self.url)
+            if parsed.entries:
+                return parsed.entries[0]
+            elif parsed['feed']['title']:
+                return { "title": "OK but no event to display (empty feed)" }
+        except KeyError:
+            return { "title": "Unknown status, unable to parse feed ("+self.url+")" }
