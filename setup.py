@@ -2,6 +2,8 @@ import os
 
 from setuptools import setup, find_packages
 
+version = __import__('aws_status').__version__
+
 def read(path):
     """Return the content of a file."""
     with open(path, 'r') as f:
@@ -9,7 +11,7 @@ def read(path):
 
 setup(
     name='aws-status',
-    version='0.0.1',
+    version=version,
     description='Wraps AWS status informations obtained via the status page.',
     long_description=(read('README.rst')),
     url='http://github.com/jbbarth/aws-status',
