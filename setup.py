@@ -24,6 +24,7 @@ setup(
         'bin/aws-status-list',
     ],
     install_requires=[
+        #TODO: read requirements.txt and deduce install_requires
         'feedparser>=5.1.3',
     ],
     test_suite="nose.collector",
