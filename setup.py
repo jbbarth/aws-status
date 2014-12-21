@@ -13,7 +13,7 @@ setup(
     name='aws-status',
     version=version,
     description='Wraps AWS status informations obtained via the status page.',
-    long_description=(read('README.rst')),
+    long_description=(read('README.md')),
     url='http://github.com/jbbarth/aws-status',
     license='MIT',
     author='Jean-Baptiste Barth',
