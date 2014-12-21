@@ -20,6 +20,7 @@ setup(
     author_email='jeanbaptiste.barth@gmail.com',
     packages=find_packages(exclude=['tests*']),
     scripts=[
+        'bin/aws-status-check',
         'bin/aws-status-list',
     ],
     install_requires=[
