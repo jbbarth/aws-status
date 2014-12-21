@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import argparse
-from aws_status import status_page
+from aws_status import StatusPage
 
 #main() function that can be used outside the script
 def main():
@@ -14,7 +14,7 @@ def main():
     if args.regions and args.services:
         raise ValueError("cannot have '--regions' AND '--services' at the same time")
 
-    page = status_page.AWSStatusPage()
+    page = StatusPage()
 
     #output the result
     if args.regions:

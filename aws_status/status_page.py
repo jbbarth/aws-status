@@ -1,7 +1,7 @@
 import re
 import urllib
 
-class AWSStatusPage(object):
+class StatusPage(object):
     """
     This class wraps access to Amazon status page and can be used to retrieve
     all available RSS feeds, and through these feeds monitored regions and
