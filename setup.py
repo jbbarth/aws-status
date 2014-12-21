@@ -26,6 +26,10 @@ setup(
     install_requires=[
         'feedparser>=5.1.3',
     ],
+    test_suite="nose.collector",
+    tests_require=[
+        'nose',
+    ],
     include_package_data=True,
     #see http://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
