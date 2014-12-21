@@ -1,6 +1,6 @@
 import unittest
 
-from aws_status import Feed
+from aws_status.feed import Feed
 
 class TestFeed(unittest.TestCase):
     def test_service_and_region_extraction(self):
