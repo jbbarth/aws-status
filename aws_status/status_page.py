@@ -1,5 +1,6 @@
 import re
 import urllib
+from .feed import Feed
 
 class StatusPage(object):
     """
@@ -10,7 +11,7 @@ class StatusPage(object):
     or for checking regions/services list.
     """
     BASE_URL = 'http://status.aws.amazon.com/'
-    RSS_RE = r'href="(?P<feed_url>rss/(?P<feed_name>[^"]+)\.rss)"'
+    RSS_RE = r'href="(?P<feed_url>rss/[^"]+\.rss)"'
 
     def __init__(self):
         self.page_source = None
@@ -24,30 +25,14 @@ class StatusPage(object):
             self.page_source = urllib.urlopen(self.BASE_URL)
         return self.page_source
 
-    def extract_elements(self, feed_name):
-        service = region = None
-        #general case: a normal region at the end
-        #ex: cloudfront-us-east-1
-        #special case: pseudo-region "us-standard"
-        #ex: s3-us-standard
-        match = re.search(r'(.*)-(\w+-\w+-\d|us-standard)$', feed_name)
-        if match:
-            service = match.group(1)
-            region = match.group(2)
-        #special case: services with no region
-        #ex: route53, or management-console
-        else:
-            service = feed_name
-
-        return [service, region]
-
     def parse_page(self):
         page_content = self.page().read()
         for match in re.finditer(self.RSS_RE, page_content):
-            self.rss_urls.add( self.BASE_URL + match.group('feed_url') )
-            service, region = self.extract_elements(match.group('feed_name'))
-            if service:
-                self.services.add(service)
-            if region:
-                self.regions.add(region)
+            absolute_url = self.BASE_URL + match.group('feed_url')
+            feed = Feed(absolute_url)
+            self.rss_urls.add(feed.url)
+            if feed.service:
+                self.services.add(feed.service)
+            if feed.region:
+                self.regions.add(feed.region)
 
