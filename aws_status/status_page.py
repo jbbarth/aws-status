@@ -1,12 +1,5 @@
 import re
-
-try:
-    #python 3.x
-    from urllib.request import urlopen
-except ImportError:
-    #python 2.x
-    from urllib2 import urlopen
-
+from urllib2 import urlopen
 from .feed import Feed
 
 class StatusPage(object):
