@@ -14,7 +14,10 @@ def main():
     last_event = Feed(args.feed).status()
     title = last_event["title"]
 
-    if title.startswith("Service is operating normally") or title.startswith("OK"):
+    if title.startswith("Service is operating normally") \
+        or title.startswith("Informational message: [RESOLVED]") \
+        or title.startswith("Informational message: [Resolved]") \
+        or title.startswith("OK"):
         status = 0
         msg = "OK:"
     elif title.startswith("Informational message") or title.startswith("Performance issues"):
