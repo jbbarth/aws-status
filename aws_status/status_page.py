@@ -15,6 +15,7 @@ class StatusPage(object):
 
     def __init__(self):
         self.page_source = None
+        self.feeds = set()
         self.rss_urls = set()
         self.services = set()
         self.regions = set()
@@ -30,6 +31,7 @@ class StatusPage(object):
         for match in re.finditer(self.RSS_RE, page_content):
             absolute_url = self.BASE_URL + match.group('feed_url')
             feed = Feed(absolute_url)
+            self.feeds.add(feed)
             self.rss_urls.add(feed.url)
             if feed.service:
                 self.services.add(feed.service)

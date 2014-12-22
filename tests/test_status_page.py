@@ -13,3 +13,5 @@ class TestStatusPage(unittest.TestCase):
         expected_feeds = int(output)
         self.assertEqual(expected_feeds, len(StatusPage().rss_urls))
 
+    def test_exposes_feeds(self):
+        self.assertIsInstance(StatusPage().feeds, type(set()))
