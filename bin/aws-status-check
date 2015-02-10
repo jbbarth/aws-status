@@ -2,6 +2,7 @@
 
 import argparse
 from aws_status.feed import Feed
+import re
 import sys
 
 #main() function that can be used outside the script
@@ -13,10 +14,12 @@ def main():
 
     last_event = Feed(args.feed).status()
     title = last_event["title"]
+    description = last_event["description"]
 
     if title.startswith("Service is operating normally") \
         or title.startswith("Informational message: [RESOLVED]") \
         or title.startswith("Informational message: [Resolved]") \
+        or re.search("and the service is operating normally.?\n?", description) \
         or title.startswith("OK"):
         status = 0
         msg = "OK:"
