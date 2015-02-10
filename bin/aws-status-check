@@ -14,7 +14,7 @@ def main():
 
     last_event = Feed(args.feed).status()
     title = last_event["title"]
-    description = last_event["description"]
+    description = last_event.get("description", "")
 
     if title.startswith("Service is operating normally") \
         or title.startswith("Informational message: [RESOLVED]") \
