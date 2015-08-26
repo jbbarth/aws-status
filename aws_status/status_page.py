@@ -11,7 +11,7 @@ class StatusPage(object):
     or for checking regions/services list.
     """
     BASE_URL = 'http://status.aws.amazon.com/'
-    RSS_RE = r'href="(?P<feed_url>rss/[^"]+\.rss)"'
+    RSS_RE = r'href="/?(?P<feed_url>rss/[^"]+\.rss)"'
 
     def __init__(self):
         self.page_source = None
