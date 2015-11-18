@@ -19,7 +19,7 @@ def main():
     if title.startswith("Service is operating normally") \
         or title.startswith("Informational message: [RESOLVED]") \
         or title.startswith("Informational message: [Resolved]") \
-        or re.search("and the service is operating normally.?\n?", description) \
+        or re.search("he service is operating normally.?\n?", description) \
         or title.startswith("OK"):
         status = 0
         msg = "OK:"
