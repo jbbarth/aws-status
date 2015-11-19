@@ -1,6 +1,29 @@
 import feedparser
 import re
 
+
+STATUS_OK = 0
+STATUS_WARNING = 1
+STATUS_CRITICAL = 2
+STATUS_UNKNOWN = 3
+
+
+def get_status(title, description):
+    if title.startswith("Service is operating normally") \
+       or title.startswith("Informational message: [RESOLVED]") \
+       or title.startswith("Informational message: [Resolved]") \
+       or re.search("he service is (now )?operating normally.?\n?", description) \
+       or title.startswith("OK"):
+        status = STATUS_OK
+    elif title.startswith("Informational message") or title.startswith("Performanceissues"):
+        status = STATUS_WARNING
+    elif title.startswith("Service disruption"):
+        status = STATUS_CRITICAL
+    else:
+        status = STATUS_UNKNOWN
+    return status
+
+
 class Feed(object):
     """
     This class wraps informations about a given AWS status feed, e.g. its
