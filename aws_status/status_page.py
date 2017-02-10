@@ -1,5 +1,10 @@
 import re
-from urllib2 import urlopen
+import sys
+
+if sys.version_info[0] < 3:
+    from urllib2 import urlopen
+else:
+    from urllib.request import urlopen
 from .feed import Feed
 
 class StatusPage(object):
@@ -27,7 +32,7 @@ class StatusPage(object):
         return self.page_source
 
     def parse_page(self):
-        page_content = self.page().read()
+        page_content = self.page().read().decode('utf-8')
         for match in re.finditer(self.RSS_RE, page_content):
             absolute_url = self.BASE_URL + match.group('feed_url')
             feed = Feed(absolute_url)
