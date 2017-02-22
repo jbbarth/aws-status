@@ -10,12 +10,12 @@ STATUS_UNKNOWN = 3
 
 def get_status(title, description):
     if title.startswith("Service is operating normally") \
-       or title.startswith("Informational message: [RESOLVED]") \
-       or title.startswith("Informational message: [Resolved]") \
+       or '[RESOLVED]' in title \
+       or '[Resolved]' in title \
        or re.search("he service is (now )?operating normally.?\n?", description) \
        or title.startswith("OK"):
         status = STATUS_OK
-    elif title.startswith("Informational message") or title.startswith("Performanceissues"):
+    elif title.startswith("Informational message") or title.startswith("Performance issues"):
         status = STATUS_WARNING
     elif title.startswith("Service disruption"):
         status = STATUS_CRITICAL
