@@ -9,7 +9,7 @@ class TestFeed(unittest.TestCase):
         self.assertEqual(feed.region, "us-east-1")
         feed = Feed("https://amazon.status.page/rss/this-is-a-service-us-standard.rss")
         self.assertEqual(feed.service, "this-is-a-service")
-        self.assertEqual(feed.region, "us-standard")
+        self.assertEqual(feed.region, "us-east-1")
 
     def test_service_and_region_extraction_special_case(self):
         feed = Feed("https://amazon.status.page/rss/this-is-a-service-with-no-region.rss")

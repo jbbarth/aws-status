@@ -44,6 +44,8 @@ class Feed(object):
         if match:
             self.service = match.group(1)
             self.region = match.group(2)
+            if self.region == 'us-standard':
+                self.region = 'us-east-1'
         #special case: services with no region
         #ex: route53, or management-console
         else:
